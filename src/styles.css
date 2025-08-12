@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.container-max { @apply max-w-6xl mx-auto px-4; }
+.section-pad { @apply py-20 md:py-28; }
+.btn { @apply inline-flex items-center justify-center rounded-xl border border-white/10 px-5 py-3 font-semibold hover:translate-y-[-1px] transition; }
+.btn-primary { @apply bg-accent text-white shadow-lg shadow-accent/20 hover:shadow-accent/30; }
+.card { @apply rounded-2xl border border-white/10 p-6 bg-white/5 backdrop-blur; }
+.gradient-surface { @apply bg-radial; }
+
+@keyframes bg-pan {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.anim-gradient {
+  background: linear-gradient(120deg, rgba(124,58,237,.35), rgba(59,130,246,.25), rgba(16,185,129,.25));
+  background-size: 200% 200%;
+  animation: bg-pan 8s ease-in-out infinite;
+}
+
+html {
+  scroll-behavior: smooth;
+}
