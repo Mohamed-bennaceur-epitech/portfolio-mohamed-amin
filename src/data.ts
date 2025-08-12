@@ -6,8 +6,8 @@ export const DATA = {
   My experience spans from creating competitive multiplayer games to implementing secure, scalable applications. 
   Passionate about problem-solving, creative design, and performance optimization.`,
   skills: [
+    { category: "Fullstack & Software", items: ["React.js / Node.js", "Symfony", "PHP", "TypeScript", "Python", "Java", "Vue.js", "SQL", "Docker", "GitLab CI/CD"] },
     { category: "Game Development", items: ["Unity (C#)", "Photon", "Unreal Engine", "WebGL", "Game Design", "Firebase"] },
-    { category: "Fullstack & Software", items: ["React.js / Node.js", "TypeScript", "Python", "Java", "Vue.js", "SQL", "Docker", "GitLab CI/CD"] },
     { category: "Networks & Security", items: ["TCP/IP, DNS, DHCP, VLAN, VPN", "Linux & Windows Server", "Pentesting", "Firewall (iptables)", "Wireshark", "Virtualization (VMware, Hyper-V)"] }
   ],
   experience: [
