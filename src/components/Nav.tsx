@@ -10,14 +10,16 @@ const links = [
 
 export default function Nav() {
   return (
-    <nav className="fixed top-4 left-1/2 -translate-x-1/2 z-50">
-      <div className="rounded-full border border-white/10 bg-black/40 backdrop-blur px-4 py-2">
-        <ul className="flex gap-3 text-sm">
+    <div className="fixed top-4 left-0 right-0 z-50 flex justify-center px-3">
+      <nav className="max-w-[90vw] md:max-w-fit overflow-x-auto no-scrollbar whitespace-nowrap rounded-full border border-white/10 bg-black/40 backdrop-blur px-3 py-2">
+        <ul className="flex gap-2 text-sm">
           {links.map(l => (
-            <li key={l.href}><a className="px-3 py-1 hover:text-accent" href={l.href}>{l.label}</a></li>
+            <li key={l.href}>
+              <a className="px-3 py-1 inline-block hover:text-accent" href={l.href}>{l.label}</a>
+            </li>
           ))}
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </div>
   )
 }

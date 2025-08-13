@@ -10,7 +10,7 @@ export default function Section({ id, title, children }: { id: string, title?: s
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.5 }}
-          className="text-3xl md:text-4xl font-extrabold mb-8"
+          className="text-2xl sm:text-3xl md:text-4xl font-extrabold mb-6 sm:mb-8"
         >
           {title}
         </motion.h2>

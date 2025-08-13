@@ -15,7 +15,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="uppercase tracking-widest text-sm text-white/70"
+          className="uppercase tracking-widest text-xs sm:text-sm text-white/70"
         >
           Welcome to my world
         </motion.p>
@@ -24,7 +24,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold mt-4"
+          className="text-4xl sm:text-5xl md:text-7xl font-extrabold mt-4 leading-tight"
         >
           {DATA.name}
         </motion.h1>
@@ -33,7 +33,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="max-w-2xl mt-6 text-lg text-white/80"
+          className="max-w-2xl mt-4 sm:mt-6 text-base sm:text-lg text-white/80"
         >
           {DATA.tagline}
         </motion.p>
@@ -42,20 +42,19 @@ export default function Hero() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.3 }}
-          className="mt-8 flex gap-3"
+          className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3"
         >
           <button
             type="button"
             onClick={() => smoothScrollTo('projects')}
-            className="btn btn-primary"
+            className="btn btn-primary w-full sm:w-auto"
           >
             View Projects
           </button>
-
           <button
             type="button"
             onClick={() => smoothScrollTo('contact')}
-            className="btn"
+            className="btn w-full sm:w-auto"
           >
             Contact Me
           </button>

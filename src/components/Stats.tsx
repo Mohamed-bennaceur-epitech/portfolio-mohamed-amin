@@ -7,7 +7,7 @@ function Counter({ value }: { value: number }) {
   const [count, setCount] = useState(0)
   useEffect(() => {
     const controls = animate(0, value, {
-      duration: 1.2,
+      duration: 1.0,
       onUpdate: (v) => setCount(Math.round(v)),
     })
     return () => controls.stop()
@@ -18,13 +18,15 @@ function Counter({ value }: { value: number }) {
 export default function Stats() {
   return (
     <Section id="stats" title="Fun Stats">
-      <div className="grid grid-cols-3 gap-6 text-center">
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 text-center">
         {DATA.stats.map((s) => (
-          <div key={s.label} className="card">
-            <div className="text-4xl font-extrabold">
+          <div key={s.label} className="card px-4 py-6">
+            <div className="text-3xl sm:text-4xl font-extrabold">
               <Counter value={s.value} />
             </div>
-            <div className="mt-1 text-white/70">{s.label}</div>
+            <div className="mt-2 text-white/70 text-sm sm:text-base break-words whitespace-normal">
+              {s.label}
+            </div>
           </div>
         ))}
       </div>
