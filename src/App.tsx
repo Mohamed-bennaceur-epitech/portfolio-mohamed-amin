@@ -6,6 +6,7 @@ import Timeline from './components/Timeline'
 import Projects from './components/Projects'
 import Stats from './components/Stats'
 import Contact from './components/Contact'
+import PlaygroundPopup from "./components/PlaygroundPopup";
 import { useEffect } from 'react'
 
 export default function App() {
@@ -58,6 +59,7 @@ export default function App() {
           </ul>
         </div>
       </footer>
+      <PlaygroundPopup />
     </div>
   )
 }
