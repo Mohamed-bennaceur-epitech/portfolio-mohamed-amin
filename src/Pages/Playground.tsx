@@ -42,20 +42,40 @@ export default function Playground() {
           </motion.div>
         </AnimatePresence>
 
-        {/* Flèche gauche */}
+        {/* Flèche gauche (SVG stylée) */}
         <button
           onClick={prev}
-          className="absolute left-4 top-1/2 -translate-y-1/2 bg-slate-700/60 hover:bg-slate-600/80 p-3 rounded-full transition-all duration-300"
+          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full border border-indigo-400 text-indigo-300 hover:text-white hover:border-indigo-300 hover:shadow-[0_0_15px_rgba(99,102,241,0.7)] transition-all duration-300"
+          aria-label="Précédent"
         >
-          <span className="text-2xl">←</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.2}
+            stroke="currentColor"
+            className="w-7 h-7"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
         </button>
 
-        {/* Flèche droite */}
+        {/* Flèche droite (SVG stylée) */}
         <button
           onClick={next}
-          className="absolute right-4 top-1/2 -translate-y-1/2 bg-slate-700/60 hover:bg-slate-600/80 p-3 rounded-full transition-all duration-300"
+          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full border border-indigo-400 text-indigo-300 hover:text-white hover:border-indigo-300 hover:shadow-[0_0_15px_rgba(99,102,241,0.7)] transition-all duration-300"
+          aria-label="Suivant"
         >
-          <span className="text-2xl">→</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2.2}
+            stroke="currentColor"
+            className="w-7 h-7"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+          </svg>
         </button>
       </div>
 
@@ -71,7 +91,7 @@ export default function Playground() {
             key={i}
             className={`w-3 h-3 rounded-full transition-all ${
               i === currentIndex
-                ? "bg-indigo-400 scale-125"
+                ? "bg-indigo-400 scale-125 shadow-[0_0_8px_rgba(99,102,241,0.7)]"
                 : "bg-slate-500 scale-100"
             }`}
           />
