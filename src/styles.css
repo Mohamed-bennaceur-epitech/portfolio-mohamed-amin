@@ -26,3 +26,45 @@ html {
 
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0.7;
+  mix-blend-mode: screen;
+  animation: glitchShift 1s infinite linear alternate-reverse;
+}
+
+.glitch-layer:nth-child(2) {
+  transform: translate(2px, -2px);
+  animation-delay: 0.2s;
+}
+
+.glitch-layer:nth-child(3) {
+  transform: translate(-2px, 2px);
+  animation-delay: 0.4s;
+}
+
+@keyframes glitchShift {
+  0% {
+    clip-path: inset(0 0 80% 0);
+  }
+  25% {
+    clip-path: inset(10% 0 50% 0);
+  }
+  50% {
+    clip-path: inset(40% 0 20% 0);
+  }
+  75% {
+    clip-path: inset(70% 0 5% 0);
+  }
+  100% {
+    clip-path: inset(0 0 80% 0);
+  }
+}
