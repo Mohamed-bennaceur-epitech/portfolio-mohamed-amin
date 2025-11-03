@@ -89,7 +89,7 @@ export default function GravityPlayground() {
         />
       ))}
       <div className="absolute bottom-2 left-1/2 -translate-x-1/2 text-gray-400 text-sm">
-        Clique n’importe où pour créer des bulles ✨
+        Clique n’importe où pour créer des bulles 🫧
       </div>
     </div>
   );
