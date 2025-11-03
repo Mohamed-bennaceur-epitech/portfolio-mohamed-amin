@@ -3,12 +3,20 @@ import { motion, AnimatePresence } from "framer-motion";
 import GravityPlayground from "../components/GravityPlayground";
 import AiMoodBoard from "../components/AiMoodBoard";
 import MiniSandbox from "../components/MiniSandbox";
+import MoodOrb from "../components/MoodOrb";
+import OrbitPlanets from "../components/OrbitPlanets";
+import ParticleMood from "../components/ParticleMood";
+import DevStatsDashboard from "../components/DevStatsDashboard";
 
 export default function Playground() {
   const components = [
     { id: 0, element: <GravityPlayground />, title: "Gravity Playground" },
     { id: 1, element: <AiMoodBoard />, title: "AI Mood Board" },
     { id: 2, element: <MiniSandbox />, title: "Mini Creative Sandbox" },
+    { id: 3, element: <MoodOrb />, title: "Mood Orb" },
+    { id: 4, element: <OrbitPlanets />, title: "Orbit Planets" },
+    { id: 5, element: <ParticleMood />, title: "Particle Mood" },
+    { id: 6, element: <DevStatsDashboard />, title: "Dev Stats Dashboard" },
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -89,11 +97,10 @@ export default function Playground() {
         {components.map((_, i) => (
           <div
             key={i}
-            className={`w-3 h-3 rounded-full transition-all ${
-              i === currentIndex
+            className={`w-3 h-3 rounded-full transition-all ${i === currentIndex
                 ? "bg-indigo-400 scale-125 shadow-[0_0_8px_rgba(99,102,241,0.7)]"
                 : "bg-slate-500 scale-100"
-            }`}
+              }`}
           />
         ))}
       </div>
