@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import {
   LineChart,
   Line,
@@ -11,7 +11,7 @@ import {
 
 export default function DevStatsDashboard() {
   const [commitMessage, setCommitMessage] = useState("");
-  const [showPopup, setShowPopup] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const commitMessages = [
     "fix: adjusted gravity multiplier 🚀",
@@ -31,6 +31,13 @@ export default function DevStatsDashboard() {
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth < 500);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const weeklyActivity = [
     { day: "Mon", commits: 5 },
     { day: "Tue", commits: 8 },
@@ -45,28 +52,33 @@ export default function DevStatsDashboard() {
   const commitsToday = 12;
   const project = "Mirror – Multiplayer Game";
 
+  if (isMobile) {
+    return (
+      <div className="flex flex-col items-center justify-center h-full text-center p-6">
+        <p className="text-gray-300 mb-4">
+          📱 Version mobile simplifiée — télécharge l’app pour une meilleure expérience.
+        </p>
+        <a
+          href="/dev_stats_dashboard.apk"
+          download="dev_stats_dashboard.apk"
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-3 rounded-lg shadow-md transition"
+        >
+          Télécharger l’app Android
+        </a>
+      </div>
+    );
+  }
+
   return (
-    <div className="relative w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-slate-900 via-indigo-900 to-purple-900 rounded-2xl border border-slate-700 shadow-xl p-8">
-      <h2 className="text-3xl font-bold text-white mb-6">Dev Stats Dashboard</h2>
+    <div className="w-full h-full flex flex-col items-center justify-center text-white">
+      <h2 className="text-3xl font-bold mb-6">Dev Stats Dashboard</h2>
 
-      {/* Bouton pour ouvrir la popup */}
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={() => setShowPopup(true)}
-        className="absolute top-6 right-6 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg shadow-md transition"
-      >
-        📱 Télécharger l'app
-      </motion.button>
-
-      {/* 3 stats principales */}
       <div className="grid grid-cols-3 gap-6 mb-8 w-full max-w-4xl">
         <StatCard label="Commits Today" value={commitsToday} icon="💻" />
         <StatCard label="Focus Level" value={`${focus}%`} icon="🧠" />
         <StatCard label="Active Project" value={project} icon="⚡" />
       </div>
 
-      {/* Graphique */}
       <div className="w-full max-w-4xl h-64 bg-slate-800/40 backdrop-blur-md rounded-xl border border-slate-600 shadow-inner p-4">
         <h3 className="text-indigo-300 text-lg font-semibold mb-2">
           Weekly Commit Activity
@@ -94,7 +106,6 @@ export default function DevStatsDashboard() {
         </ResponsiveContainer>
       </div>
 
-      {/* Message de commit */}
       <motion.div
         key={commitMessage}
         initial={{ opacity: 0, y: 10 }}
@@ -107,52 +118,10 @@ export default function DevStatsDashboard() {
           {commitMessage}
         </p>
       </motion.div>
-
-      {/* --- Popup de téléchargement --- */}
-      {showPopup && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="absolute inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center"
-        >
-          <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="bg-slate-900 text-white rounded-2xl shadow-2xl p-8 max-w-sm w-full border border-indigo-700"
-          >
-            <h3 className="text-2xl font-semibold mb-4 text-center text-indigo-400">
-              📱 Télécharger l'application mobile
-            </h3>
-            <p className="text-gray-300 text-center mb-6">
-              Souhaitez-vous télécharger la version Android de{" "}
-              <span className="font-semibold text-indigo-300">Dev Stats Dashboard</span> ?
-            </p>
-
-            <div className="flex justify-center gap-4">
-              <a
-                href="/apk/dev_stats_dashboard.apk"
-                download
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-5 py-2 rounded-lg shadow-md transition"
-              >
-                Oui, télécharger
-              </a>
-              <button
-                onClick={() => setShowPopup(false)}
-                className="bg-slate-700 hover:bg-slate-600 text-white px-5 py-2 rounded-lg transition"
-              >
-                Annuler
-              </button>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
     </div>
   );
 }
 
-/* --- Sous composant StatCard --- */
 function StatCard({
   label,
   value,
