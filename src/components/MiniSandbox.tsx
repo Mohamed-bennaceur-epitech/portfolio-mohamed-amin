@@ -99,7 +99,7 @@ function EscapeButton() {
 }
 
 /* ---------------------------------------------- */
-/* 🔥 Composant effet GLITCH */
+/* Composant effet GLITCH */
 function GlitchText({ text }: { text: string }) {
   return (
     <motion.div
