@@ -1,0 +1,1308 @@
+.virtualspace-scope {
+  --background: 222 47% 5%;
+  --foreground: 210 40% 96%;
+  --card: 222 47% 8%;
+  --card-foreground: 210 40% 96%;
+  --popover: 222 47% 8%;
+  --popover-foreground: 210 40% 96%;
+  --primary: 186 100% 50%;
+  --primary-foreground: 222 47% 5%;
+  --secondary: 270 100% 65%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 222 30% 15%;
+  --muted-foreground: 215 20% 55%;
+  --accent: 186 80% 40%;
+  --accent-foreground: 210 40% 98%;
+  --border: 222 30% 20%;
+  --input: 222 30% 15%;
+  --ring: 186 100% 50%;
+  --radius: 12px;
+
+  --neon-cyan: 186 100% 50%;
+  --neon-purple: 270 100% 65%;
+  --neon-pink: 320 100% 60%;
+  --glass-bg: hsl(222 47% 8% / 0.7);
+  --glass-border: hsl(186 100% 50% / 0.2);
+
+  /* Fond global Virtual Space */
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  font-family: 'Rajdhani', sans-serif;
+}
+
+.virtualspace-scope * {
+  box-sizing: border-box;
+  border-color: hsl(var(--border));
+}
+
+.virtualspace-scope h1,
+.virtualspace-scope h2,
+.virtualspace-scope h3,
+.virtualspace-scope h4 {
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* ===============================
+   SECTION FULLSCREEN SCROLLER
+   =============================== */
+.virtualspace-scope .zone-section {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+/* ===============================
+   GRID BACKGROUND
+   =============================== */
+.virtualspace-scope .grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(hsl(var(--primary) / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, hsl(var(--primary) / 0.04) 1px, transparent 1px);
+  background-size: 55px 55px;
+  opacity: 0.25;
+}
+
+/* ===============================
+   PARALLAX ORBS
+   =============================== */
+.virtualspace-scope .parallax-shape {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.22;
+  filter: blur(50px);
+  animation: float 6s ease-in-out infinite;
+}
+
+/* ===============================
+   SCANLINE EFFECT
+   =============================== */
+.virtualspace-scope .scan-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    hsl(var(--primary) / 0.03) 2px,
+    hsl(var(--primary) / 0.03) 4px
+  );
+}
+/* ===========================================================
+   GLASS PANELS / NEON EFFECTS
+   =========================================================== */
+
+.virtualspace-scope .glass-panel {
+  background-color: hsl(var(--card) / 0.65);
+  backdrop-filter: blur(22px);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  box-shadow:
+    0 0 30px hsl(var(--primary) / 0.15),
+    inset 0 1px 0 hsl(var(--foreground) / 0.07);
+}
+
+.virtualspace-scope .neon-text {
+  color: hsl(var(--primary));
+  text-shadow:
+    0 0 20px hsl(var(--primary) / 0.8),
+    0 0 40px hsl(var(--primary) / 0.6),
+    0 0 80px hsl(var(--primary) / 0.3);
+}
+
+.virtualspace-scope .neon-border {
+  box-shadow:
+    0 0 12px hsl(var(--primary) / 0.5),
+    0 0 30px hsl(var(--primary) / 0.2),
+    inset 0 0 12px hsl(var(--primary) / 0.2);
+}
+
+.virtualspace-scope .neon-glow {
+  box-shadow: 0 0 25px hsl(var(--primary) / 0.6);
+}
+
+/* ===========================================================
+   HOVER LIFT EFFECT
+   =========================================================== */
+
+.virtualspace-scope .hover-lift {
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+.virtualspace-scope .hover-lift:hover {
+  transform: translateY(-9px) scale(1.03);
+  box-shadow:
+    0 20px 40px hsl(var(--primary) / 0.35),
+    0 0 60px hsl(var(--primary) / 0.25);
+}
+
+/* ===========================================================
+   BUTTON BADGE DOTS (WelcomeHall)
+   =========================================================== */
+
+.virtualspace-scope .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+/* ===========================================================
+   SCROLLBAR HIDE
+   =========================================================== */
+
+.virtualspace-scope .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.virtualspace-scope .scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ===========================================================
+   TYPEWRITER EFFECT (if needed)
+   =========================================================== */
+
+.virtualspace-scope .typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  animation: typewriter 3s steps(40) 1s forwards;
+  border-right: 2px solid hsl(var(--primary));
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ===========================================================
+   CORE ANIMATIONS
+   =========================================================== */
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(4deg);
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(20px) rotate(-4deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0% {
+    box-shadow: 0 0 6px hsl(var(--primary) / 0.5);
+  }
+  100% {
+    box-shadow: 0 0 18px hsl(var(--primary) / 0.8);
+  }
+}
+
+@keyframes fade-in {
+  0% { opacity: 0; transform: translateY(12px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  0% { opacity: 0; transform: scale(0.92); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.virtualspace-scope .animate-scale-in {
+  animation: scale-in 0.4s ease forwards;
+}
+
+.virtualspace-scope .animate-fade-in {
+  animation: fade-in 0.4s ease forwards;
+}
+
+/* Pulsing small indicators */
+.virtualspace-scope .animate-pulse {
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* Float utility */
+.virtualspace-scope .animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.virtualspace-scope .animate-float-delayed {
+  animation: float-delayed 6s ease-in-out infinite;
+}
+/* ===========================================================
+   WELCOME HALL — ZONE 1
+   (Effets d’entrée, titres, lignes décoratives, prompt)
+   =========================================================== */
+
+.virtualspace-scope .welcome-wrapper {
+  position: relative;
+  z-index: 10;
+  max-width: 1100px;
+  text-align: center;
+  padding: 0 1.5rem;
+}
+
+/* Decorative centered lines */
+.virtualspace-scope .welcome-lines {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.virtualspace-scope .welcome-lines.hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.virtualspace-scope .welcome-line {
+  width: 80px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary)),
+    transparent
+  );
+}
+
+.virtualspace-scope .welcome-diamond {
+  width: 10px;
+  height: 10px;
+  background: hsl(var(--primary));
+  transform: rotate(45deg);
+  animation: pulse-glow 1.5s infinite alternate;
+}
+
+/* Title */
+.virtualspace-scope .welcome-title {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.virtualspace-scope .welcome-title.hidden {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+/* Subtitle */
+.virtualspace-scope .welcome-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: hsl(var(--muted-foreground));
+  transition: opacity 0.7s ease 0.25s, transform 0.7s ease 0.25s;
+}
+
+.virtualspace-scope .welcome-subtitle b {
+  color: hsl(var(--primary));
+}
+
+.virtualspace-scope .welcome-subtitle.hidden {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+/* Description text */
+.virtualspace-scope .welcome-desc {
+  font-size: 1.125rem;
+  max-width: 680px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.6;
+  color: hsl(var(--muted-foreground) / 0.85);
+  transition: opacity 0.7s ease 0.45s, transform 0.7s ease 0.45s;
+}
+
+.virtualspace-scope .welcome-desc span {
+  display: block;
+  margin-top: 0.4rem;
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.virtualspace-scope .welcome-desc.hidden {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Status prompt */
+.virtualspace-scope .welcome-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--card) / 0.7);
+  backdrop-filter: blur(18px);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  transition: opacity 0.7s ease 0.65s, transform 0.7s ease 0.65s;
+}
+
+.virtualspace-scope .welcome-status.hidden {
+  opacity: 0;
+  transform: scale(0.95);
+}
+
+.virtualspace-scope .welcome-status-dots {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.virtualspace-scope .welcome-status-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+}
+
+.virtualspace-scope .welcome-status-dots .dot:nth-child(1) {
+  background-color: hsl(var(--primary));
+  animation: bounce 0.9s infinite;
+}
+.virtualspace-scope .welcome-status-dots .dot:nth-child(2) {
+  background-color: hsl(var(--secondary));
+  animation: bounce 0.9s infinite 0.2s;
+}
+.virtualspace-scope .welcome-status-dots .dot:nth-child(3) {
+  background-color: hsl(var(--neon-pink));
+  animation: bounce 0.9s infinite 0.4s;
+}
+
+/* Bounce animation for dots */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); opacity: 0.7; }
+  50% { transform: translateY(-7px); opacity: 1; }
+}
+
+/* Floating decorative outlines */
+.virtualspace-scope .welcome-orb-outline {
+  position: absolute;
+  border-radius: 999px;
+  opacity: 0.35;
+  border: 1px solid hsl(var(--primary) / 0.2);
+  animation: float 6s ease-in-out infinite;
+}
+
+.virtualspace-scope .welcome-outline-1 {
+  width: 160px;
+  height: 160px;
+  top: -70px;
+  left: -70px;
+}
+
+.virtualspace-scope .welcome-outline-2 {
+  width: 120px;
+  height: 120px;
+  bottom: -50px;
+  right: -60px;
+  transform: rotate(45deg);
+}/* ===========================================================
+   INTERACTIVE GALLERY — REWORK (MATCH CONSOLE STYLE)
+   =========================================================== */
+
+/* Section header */
+.virtualspace-scope .gallery-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fade-in 0.8s ease forwards;
+}
+
+.virtualspace-scope .gallery-title {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+  font-weight: 700;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+  text-shadow:
+    0 0 16px hsl(var(--primary) / 0.4),
+    0 0 32px hsl(var(--secondary) / 0.3);
+}
+
+.virtualspace-scope .gallery-subtitle {
+  font-size: 1.15rem;
+  opacity: 0.8;
+  color: hsl(var(--muted-foreground));
+}
+
+/* GRID */
+.virtualspace-scope .gallery-grid {
+  display: grid;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1250px;
+  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+/* CARD */
+.virtualspace-scope .gallery-card {
+  background: hsl(var(--card) / 0.65);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  backdrop-filter: blur(18px);
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: left;
+
+  opacity: 0;
+  transform: translateY(22px);
+  animation: fade-in 0.7s ease forwards;
+
+  transition: all 0.35s ease;
+}
+
+.virtualspace-scope .gallery-card:hover {
+  transform: translateY(-10px) scale(1.03);
+  border-color: hsl(var(--primary) / 0.45);
+  box-shadow:
+    0 0 30px hsl(var(--primary) / 0.25),
+    0 0 45px hsl(var(--secondary) / 0.2);
+}
+
+/* Icon */
+.virtualspace-scope .gallery-icon {
+  margin-bottom: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.virtualspace-scope .gallery-card:hover .gallery-icon {
+  transform: scale(1.12) rotate(6deg);
+}
+
+/* Title */
+.virtualspace-scope .gallery-card-title {
+  font-size: 1.35rem;
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  color: hsl(var(--foreground));
+}
+
+/* Description */
+.virtualspace-scope .gallery-card-desc {
+  font-size: 0.95rem;
+  color: hsl(var(--muted-foreground));
+  opacity: 0.85;
+  line-height: 1.45;
+  max-height: 48px;
+  overflow: hidden;
+}
+
+
+/* ===========================================================
+   MODAL (POPUP)
+   =========================================================== */
+
+.virtualspace-scope .modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: hsl(var(--background) / 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 150;
+  animation: fade-in 0.35s ease forwards;
+}
+
+.virtualspace-scope .modal-panel {
+  position: relative;
+  width: 100%;
+  max-width: 600px;
+  padding: 2rem;
+  border-radius: var(--radius);
+  background-color: hsl(var(--card) / 0.9);
+  border: 1px solid hsl(var(--primary) / 0.3);
+  animation: scale-in 0.35s ease forwards;
+  box-shadow:
+    0 0 40px hsl(var(--primary) / 0.3),
+    0 0 80px hsl(var(--primary) / 0.15);
+}
+
+.virtualspace-scope .modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  border-radius: 8px;
+  padding: 0.5rem;
+  background: hsl(var(--muted) / 0.4);
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.virtualspace-scope .modal-close:hover {
+  background: hsl(var(--muted) / 0.7);
+}
+
+.virtualspace-scope .modal-title {
+  font-size: 2rem;
+  font-weight: 700;
+  background-image: linear-gradient(
+    135deg,
+    hsl(var(--primary)),
+    hsl(var(--secondary))
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.virtualspace-scope .modal-desc {
+  color: hsl(var(--muted-foreground));
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.virtualspace-scope .modal-footer {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: hsl(var(--muted-foreground) / 0.7);
+}
+
+.virtualspace-scope .modal-footer .dot {
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--primary));
+  border-radius: 50%;
+  animation: pulse 1s infinite alternate;
+}
+/* ===========================================================
+   CONTROL CONSOLE — ZONE 3
+   =========================================================== */
+
+.virtualspace-scope .console-wrapper {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  max-width: 1150px;
+  padding: 0 1.5rem;
+  transition: filter 0.4s ease;
+}
+
+.virtualspace-scope .console-grayscale {
+  filter: grayscale(1);
+}
+
+/* Section header */
+.virtualspace-scope .console-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.virtualspace-scope .console-header.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.virtualspace-scope .console-title {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  background-image: linear-gradient(
+    135deg,
+    hsl(var(--primary)),
+    hsl(var(--secondary))
+  );
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 0.5rem;
+}
+
+.virtualspace-scope .console-subtitle {
+  color: hsl(var(--muted-foreground));
+  font-size: 1.125rem;
+  opacity: 0.8;
+}
+
+/* ===============================
+   GRID LAYOUT
+   =============================== */
+
+.virtualspace-scope .console-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .virtualspace-scope .console-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* ===========================================================
+   PANEL: SYSTEM STATUS
+   =========================================================== */
+
+.virtualspace-scope .status-panel {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: hsl(var(--card) / 0.7);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.virtualspace-scope .status-panel.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.virtualspace-scope .status-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  color: hsl(var(--primary));
+}
+
+.virtualspace-scope .status-row {
+  display: flex;
+  justify-content: space-between;
+  background: hsl(var(--muted) / 0.25);
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 0.7rem;
+}
+
+.virtualspace-scope .status-label {
+  font-size: 0.9rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.virtualspace-scope .status-value {
+  font-size: 0.85rem;
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+
+/* Power bar */
+.virtualspace-scope .power-bar-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+  font-size: 0.75rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.virtualspace-scope .power-bar-track {
+  width: 100%;
+  height: 8px;
+  background: hsl(var(--muted));
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.virtualspace-scope .power-bar-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    hsl(var(--primary)),
+    hsl(var(--secondary))
+  );
+  transition: width 0.4s ease;
+}
+
+/* ===========================================================
+   PANEL: CONTROLS
+   =========================================================== */
+
+.virtualspace-scope .control-panel {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: hsl(var(--card) / 0.7);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.virtualspace-scope .control-panel.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.virtualspace-scope .control-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: hsl(var(--primary));
+}
+
+/* Toggle button */
+.virtualspace-scope .toggle-btn {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius);
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid hsl(var(--primary) / 0.4);
+  background: hsl(var(--primary) / 0.2);
+  cursor: pointer;
+  transition: background 0.3s ease, border 0.3s ease;
+}
+
+.virtualspace-scope .toggle-btn.off {
+  background: hsl(var(--muted) / 0.4);
+  border-color: hsl(var(--border));
+}
+
+.virtualspace-scope .toggle-switch {
+  width: 42px;
+  height: 22px;
+  border-radius: 20px;
+  background: hsl(var(--primary));
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.virtualspace-scope .toggle-switch.off {
+  background: hsl(var(--muted));
+}
+
+.virtualspace-scope .toggle-knob {
+  width: 14px;
+  height: 14px;
+  background: hsl(var(--foreground));
+  border-radius: 50%;
+  position: absolute;
+  top: 4px;
+  left: 4px;
+  transition: transform 0.3s ease;
+}
+
+.virtualspace-scope .toggle-knob.on {
+  transform: translateX(20px);
+}
+
+/* Boost button */
+.virtualspace-scope .boost-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--secondary) / 0.4);
+  background: hsl(var(--secondary) / 0.15);
+  color: hsl(var(--secondary));
+  font-weight: 600;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.virtualspace-scope .boost-btn:hover {
+  background: hsl(var(--secondary) / 0.3);
+  border-color: hsl(var(--secondary) / 0.6);
+}
+
+/* System check button */
+.virtualspace-scope .syscheck-btn {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: var(--radius);
+  border: 1px solid hsl(var(--neon-pink) / 0.4);
+  background: hsl(var(--neon-pink) / 0.15);
+  color: hsl(var(--neon-pink));
+  font-weight: 600;
+  text-align: center;
+  transition: 0.3s ease;
+}
+
+.virtualspace-scope .syscheck-btn:hover {
+  background: hsl(var(--neon-pink) / 0.3);
+  border-color: hsl(var(--neon-pink) / 0.6);
+}
+
+/* ===========================================================
+   TERMINAL LOG PANEL
+   =========================================================== */
+
+.virtualspace-scope .terminal-panel {
+  padding: 1.5rem;
+  border-radius: var(--radius);
+  background: hsl(var(--card) / 0.7);
+  border: 1px solid hsl(var(--primary) / 0.25);
+  backdrop-filter: blur(18px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.virtualspace-scope .terminal-panel.hidden {
+  opacity: 0;
+  transform: translateY(22px);
+}
+
+.virtualspace-scope .terminal-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: hsl(var(--primary));
+}
+
+/* Log window */
+.virtualspace-scope .terminal-logbox {
+  background: hsl(var(--background) / 0.45);
+  border-radius: var(--radius);
+  padding: 1rem;
+  height: 190px;
+  overflow-y: auto;
+  font-family: monospace;
+  font-size: 0.85rem;
+  color: hsl(var(--muted-foreground));
+}
+
+/* Log entry highlight */
+.virtualspace-scope .terminal-logbox .log-latest {
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+
+/* Command cursor */
+.virtualspace-scope .terminal-cursor {
+  width: 10px;
+  height: 16px;
+  background: hsl(var(--primary));
+  animation: pulse 1s infinite alternate;
+  margin-left: 2px;
+}
+
+/* ===========================================================
+   SYSTEM CHECK POPUP
+   =========================================================== */
+
+.virtualspace-scope .popup-backdrop {
+  position: fixed;
+  inset: 0;
+  background: hsl(var(--background) / 0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+  animation: fade-in 0.35s ease forwards;
+}
+
+.virtualspace-scope .popup-panel {
+  background: hsl(var(--card) / 0.9);
+  border: 1px solid hsl(var(--primary) / 0.3);
+  border-radius: var(--radius);
+  padding: 2rem;
+  width: 100%;
+  max-width: 450px;
+  animation: scale-in 0.35s ease forwards;
+  text-align: center;
+  box-shadow:
+    0 0 40px hsl(var(--primary) / 0.3),
+    0 0 80px hsl(var(--primary) / 0.2);
+}
+
+.virtualspace-scope .popup-status-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+  color: hsl(var(--muted-foreground));
+}
+
+.virtualspace-scope .popup-status-value {
+  color: hsl(var(--primary));
+  font-weight: 600;
+}
+
+.virtualspace-scope .popup-close-btn {
+  margin-top: 1.2rem;
+  padding: 0.6rem 1.4rem;
+  border-radius: var(--radius);
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  font-weight: 600;
+  transition: background 0.25s ease;
+}
+
+.virtualspace-scope .popup-close-btn:hover {
+  background: hsl(var(--primary) / 0.8);
+}
+
+/* ------------------------------
+   ZONE TITLES & HEADERS
+--------------------------------*/
+.virtualspace-scope .zone-title {
+  font-weight: 700;
+  font-size: 3.5rem;
+  letter-spacing: -1px;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 12px hsl(var(--primary) / 0.4),
+    0 0 24px hsl(var(--primary) / 0.3);
+}
+
+.virtualspace-scope .zone-subtitle {
+  text-align: center;
+  font-size: 1.2rem;
+  color: hsl(var(--muted-foreground));
+  margin-bottom: 2.5rem;
+}
+
+/* ------------------------------
+   GALLERY CARDS
+--------------------------------*/
+.virtualspace-scope .gallery-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid hsl(var(--border));
+  border-radius: 1rem;
+  padding: 2rem;
+  transition: all 0.35s ease;
+  backdrop-filter: blur(10px);
+}
+
+.virtualspace-scope .gallery-card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 0 20px hsl(var(--primary) / 0.4),
+    0 0 40px hsl(var(--primary) / 0.2);
+}
+
+/* ------------------------------
+   MODAL LOVABLE STYLE
+--------------------------------*/
+.virtualspace-scope .gallery-modal {
+  background: hsl(var(--card) / 0.75);
+  border: 1px solid hsl(var(--primary) / 0.3);
+  backdrop-filter: blur(20px);
+  padding: 2.5rem;
+  border-radius: 1rem;
+  animation: scaleIn 0.35s ease forwards;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* ------------------------------
+   WELCOME SECTION
+--------------------------------*/
+.virtualspace-scope .welcome-title {
+  font-size: 5rem;
+  font-weight: 800;
+  letter-spacing: -1px;
+  background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow:
+    0 0 16px hsl(var(--primary) / 0.4),
+    0 0 32px hsl(var(--primary) / 0.3);
+}
+
+.virtualspace-scope .welcome-text {
+  color: hsl(var(--muted-foreground));
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+}
+/* ------------------------------ */
+/* GLOBAL VIRTUAL SPACE EFFECTS   */
+/* ------------------------------ */
+
+.virtualspace-zone {
+  position: relative;
+  min-width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Pretty cards */
+.zone-card {
+  background: rgba(10, 15, 30, 0.55);
+  border: 1px solid rgba(120, 200, 255, 0.15);
+  backdrop-filter: blur(18px);
+  border-radius: 18px;
+  padding: 26px;
+  transition: all 0.35s ease;
+}
+
+.zone-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 0 35px rgba(0, 200, 255, 0.25);
+}
+
+/* Gradient glow around sections */
+.bg-gradient-zone {
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 200, 255, 0.18),
+    rgba(0, 0, 0, 0)
+  );
+}
+
+/* Title animation */
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.8s forwards;
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Slight hover lift */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(0, 200, 255, 0.18);
+}
+
+/* Pulsing glowing dot */
+.animate-pulse-glow {
+  animation: pulseGlow 1.8s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+  0% { opacity: 0.3; transform: scale(0.9); }
+  50% { opacity: 0.9; transform: scale(1); }
+  100% { opacity: 0.3; transform: scale(0.9); }
+}
+
+/* Slow float */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); }
+  50% { transform: translateY(-18px) rotate(4deg); }
+  100% { transform: translateY(0) rotate(0); }
+}
+
+.animate-float-delayed {
+  animation: float 6s ease-in-out infinite;
+  animation-delay: -2.5s;
+}
+
+/* Soft glowing outlines (rectangles etc.) */
+.glow-outline {
+  border: 1px solid rgba(0, 200, 255, 0.2);
+  box-shadow: 0 0 35px rgba(0, 200, 255, 0.15);
+}
+
+/* Section header bars */
+.section-divider {
+  width: 70px;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, rgb(0,200,255), transparent);
+  margin: 14px auto;
+}
+/* ============================
+   GLOBAL ZONE WRAPPER
+============================ */
+.zone-section {
+  width: 100vw;
+  height: 100vh;
+  padding: 4rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  scroll-snap-align: start;
+  position: relative;
+  z-index: 5;
+}
+
+/* ============================
+   PANEL (same base as console)
+============================ */
+.panel {
+  background: rgba(10, 14, 25, 0.55);
+  border: 1px solid rgba(0, 255, 255, 0.12);
+  border-radius: 18px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  padding: 2.2rem;
+  width: 900px;
+  max-width: 90%;
+}
+
+/* Title (same style as console title) */
+.panel-title {
+  font-size: 2.6rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-bottom: 1.2rem;
+  background: linear-gradient(to right, #5bc6ff, #bb8cff);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* ============================
+   GRID FOR GALLERY
+============================ */
+.panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* ============================
+   CARD (Gallery items)
+============================ */
+.card {
+  background: rgba(20, 25, 40, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 16px;
+  padding: 1.4rem;
+  transition: 0.35s ease;
+  backdrop-filter: blur(10px);
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.03);
+  border-color: rgba(0, 255, 255, 0.4);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.15);
+}
+
+/* Card Title */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+  color: #e1eaff;
+}
+
+/* Card Body */
+.card-body {
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: rgba(200, 210, 230, 0.75);
+}
+
+/* ============================
+   MODAL (Gallery item detail)
+============================ */
+.panel.modal {
+  max-width: 600px;
+  padding: 2rem;
+  animation: scaleIn 0.4s ease forwards;
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+/* ============================
+   WELCOME HALL PANEL
+============================ */
+.welcome-panel {
+  background: rgba(10, 14, 25, 0.55);
+  border: 1px solid rgba(0, 255, 255, 0.12);
+  border-radius: 22px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.08);
+  backdrop-filter: blur(22px);
+  padding: 3rem 3rem;
+  max-width: 900px;
+  width: 90%;
+  text-align: center;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+/* Title style to match Console */
+.welcome-title {
+  font-size: 4rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #6cc9ff, #bb8cff);
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.welcome-sub {
+  font-size: 1.32rem;
+  color: #a8b4c7;
+  margin-bottom: 2rem;
+}
+
+.welcome-desc {
+  font-size: 1rem;
+  color: rgba(200, 210, 230, 0.75);
+  margin-bottom: 2.8rem;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* ============================
+   TOP NAVBAR (better styling)
+============================ */
+.navbar {
+  background: rgba(10, 14, 25, 0.65);
+  border-bottom: 1px solid rgba(0,255,255,0.08);
+  backdrop-filter: blur(14px);
+  padding: 0.8rem 2rem;
+}
+
+/* Buttons */
+.nav-btn {
+  padding: 0.45rem 1.2rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  transition: 0.25s ease;
+}
+
+.nav-btn.active {
+  background: rgba(0,255,255,0.12);
+  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  color: #7ce7ff;
+}
+
+.nav-btn:hover:not(.active) {
+  background: rgba(255,255,255,0.05);
+  color: #e3ecff;
+}
