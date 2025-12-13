@@ -5,28 +5,43 @@ interface WelcomeHallProps {
 }
 
 const WelcomeHall = ({ isActive }: WelcomeHallProps) => {
-  const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    if (isActive) {
-      const t = setTimeout(() => setVisible(true), 200);
-      return () => clearTimeout(t);
-    } else {
-      setVisible(false);
-    }
-  }, [isActive]);
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
 
   return (
-    <section className="zone-section virtualspace-scope relative flex items-center justify-center overflow-hidden">
+    <section className="zone-section virtualspace-scope relative flex justify-center overflow-hidden px-4 py-16">
+      <div className="welcome-panel max-w-xl w-full text-center">
+        <h1
+          className="welcome-title"
+          style={{
+            fontSize: isMobile ? "2.5rem" : undefined,
+            lineHeight: isMobile ? "1.1" : undefined,
+          }}
+        >
+          WELCOME
+        </h1>
 
-      <div className="welcome-panel">
-        <h1 className="welcome-title">WELCOME</h1>
-
-        <p className="welcome-sub">
+        <p
+          className="welcome-sub"
+          style={{
+            fontSize: isMobile ? "1rem" : undefined,
+          }}
+        >
           to the Mini Virtual Space
         </p>
 
-        <p className="welcome-desc">
+        <p
+          className="welcome-desc"
+          style={{
+            fontSize: isMobile ? "0.9rem" : undefined,
+          }}
+        >
           Exploring immersive interactions on the Web — just for fun.
           <br />
           <span className="text-muted-foreground/60 text-sm">
@@ -34,19 +49,17 @@ const WelcomeHall = ({ isActive }: WelcomeHallProps) => {
           </span>
         </p>
 
-        <div className="glass-panel inline-flex items-center gap-4 px-6 py-4 mx-auto">
-          <div className="flex gap-1">
-            <div className="w-2 h-2 rounded-full bg-primary animate-bounce" />
-            <div className="w-2 h-2 rounded-full bg-secondary animate-bounce" />
-            <div className="w-2 h-2 rounded-full bg-neon-pink animate-bounce" />
-          </div>
-
-          <span className="text-muted-foreground font-medium">
+        <div className="glass-panel inline-flex items-center gap-4 px-5 py-3 mx-auto mt-6">
+          <span
+            className="text-muted-foreground font-medium"
+            style={{
+              fontSize: isMobile ? "0.85rem" : undefined,
+            }}
+          >
             System initialized • Ready to explore
           </span>
         </div>
       </div>
-
     </section>
   );
 };

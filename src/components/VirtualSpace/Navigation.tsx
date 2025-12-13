@@ -1,149 +1,118 @@
-import { useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin } from "lucide-react";
 
-interface NavigationProps {
+export interface NavigationProps {
   currentZone: number;
   onNavigate: (zone: number) => void;
+  disabled?: boolean;
 }
 
-const zones = [
-  { id: 0, name: "Hall", icon: "🏛️" },
-  { id: 1, name: "Gallery", icon: "🎨" },
-  { id: 2, name: "Console", icon: "🎛️" },
+const ZONES = [
+  { label: "Hall", icon: "🏛️" },
+  { label: "Gallery", icon: "🎨" },
+  { label: "Console", icon: "🧩" },
 ];
 
-const Navigation = ({ currentZone, onNavigate }: NavigationProps) => {
-  const [teleportOpen, setTeleportOpen] = useState(false);
+const Navigation = ({ currentZone, onNavigate, disabled = false }: NavigationProps) => {
+  const canGoPrev = currentZone > 0;
+  const canGoNext = currentZone < ZONES.length - 1;
 
-  const goPrev = () => currentZone > 0 && onNavigate(currentZone - 1);
-  const goNext = () =>
-    currentZone < zones.length - 1 && onNavigate(currentZone + 1);
+  const goPrev = () => {
+    if (disabled || !canGoPrev) return;
+    onNavigate(currentZone - 1);
+  };
+
+  const goNext = () => {
+    if (disabled || !canGoNext) return;
+    onNavigate(currentZone + 1);
+  };
 
   return (
     <>
-      {/* TOP NAV */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/40 backdrop-blur-xl border-b border-white/5 shadow-[0_0_20px_rgba(0,0,0,0.4)]">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      {/* Top bar */}
+      <header className="fixed top-0 left-0 right-0 z-40">
+        <div className="mx-auto max-w-6xl px-4 py-3">
+          <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-black/30 backdrop-blur-xl px-4 py-3 shadow-[0_0_30px_rgba(0,255,255,0.08)]">
+            <div className="flex items-center gap-2 text-white/90 font-semibold tracking-wide">
+              <span className="inline-block h-2 w-2 rounded-full bg-cyan-400 shadow-[0_0_12px_rgba(34,211,238,0.9)]" />
+              <span>VIRTUAL SPACE</span>
+            </div>
 
-          {/* LOGO */}
-          <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-primary animate-pulse" />
-            <span className="font-display text-lg tracking-wider text-primary/90">
-              VIRTUAL SPACE
-            </span>
-          </div>
+            <nav className="hidden sm:flex items-center gap-2">
+              {ZONES.map((z, idx) => {
+                const active = idx === currentZone;
+                return (
+                  <button
+                    key={z.label}
+                    type="button"
+                    onClick={() => !disabled && onNavigate(idx)}
+                    className={[
+                      "flex items-center gap-2 rounded-full px-4 py-2 text-sm transition",
+                      "border border-white/10 bg-white/5 hover:bg-white/10",
+                      active
+                        ? "bg-cyan-500/15 border-cyan-400/30 shadow-[0_0_18px_rgba(34,211,238,0.25)]"
+                        : "text-white/80",
+                      disabled ? "opacity-70" : "",
+                    ].join(" ")}
+                  >
+                    <span className="opacity-90">{z.icon}</span>
+                    <span className="font-medium">{z.label}</span>
+                  </button>
+                );
+              })}
+            </nav>
 
-          {/* NAV BUTTONS */}
-          <div className="hidden md:flex items-center gap-3">
-            {zones.map((z) => (
-              <button
-                key={z.id}
-                onClick={() => onNavigate(z.id)}
-                className={`
-                  flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
-                  transition-all duration-300
-                  ${
-                    currentZone === z.id
-                      ? "bg-primary/20 text-primary neon-border shadow-[0_0_12px_var(--primary)]"
-                      : "text-muted-foreground hover:text-foreground hover:bg-white/5"
-                  }
-                `}
-              >
-                <span>{z.icon}</span>
-                {z.name}
-              </button>
-            ))}
-          </div>
-
-          {/* TELEPORT */}
-          <div className="relative">
             <button
-              onClick={() => setTeleportOpen(!teleportOpen)}
-              className="flex items-center gap-2 px-4 py-2 rounded-lg border border-primary/40 bg-primary/10 text-primary hover:bg-primary/20 transition-all"
+              type="button"
+              className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/85 hover:bg-white/10 transition"
             >
-              <MapPin size={16} />
+              <MapPin size={16} className="opacity-90" />
               Teleport
             </button>
-
-            {teleportOpen && (
-              <div className="absolute right-0 mt-2 glass-panel p-2 min-w-[180px] animate-scale-in shadow-lg">
-                {zones.map((z) => (
-                  <button
-                    key={z.id}
-                    onClick={() => {
-                      onNavigate(z.id);
-                      setTeleportOpen(false);
-                    }}
-                    className={`
-                      w-full flex items-center gap-3 px-4 py-2 rounded-lg
-                      transition-all duration-200
-                      ${
-                        currentZone === z.id
-                          ? "bg-primary/20 text-primary"
-                          : "hover:bg-white/5 text-foreground"
-                      }
-                    `}
-                  >
-                    <span>{z.icon}</span>
-                    {z.name}
-                  </button>
-                ))}
-              </div>
-            )}
           </div>
         </div>
-      </nav>
+      </header>
 
-      {/* LEFT ARROW */}
-      <button
-        onClick={goPrev}
-        disabled={currentZone === 0}
-        className={`
-          fixed left-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full glass-panel
-          transition-all duration-300
-          ${
-            currentZone === 0
-              ? "opacity-20 cursor-not-allowed"
-              : "hover:bg-primary/20 hover:neon-glow"
-          }
-        `}
+      {/* Side arrows (these are the ones that must disappear on popup) */}
+      <div
+        className={[
+          "fixed left-0 right-0 top-1/2 -translate-y-1/2 z-30 pointer-events-none",
+          disabled ? "opacity-0" : "opacity-100",
+        ].join(" ")}
+        aria-hidden={disabled}
       >
-        <ChevronLeft className="w-6 h-6 text-primary" />
-      </button>
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="flex items-center justify-between">
+            <button
+              type="button"
+              onClick={goPrev}
+              disabled={disabled || !canGoPrev}
+              className={[
+                "pointer-events-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl",
+                "border border-cyan-400/20 bg-black/35 backdrop-blur-xl",
+                "shadow-[0_0_22px_rgba(34,211,238,0.12)] transition",
+                "hover:bg-black/45",
+                (disabled || !canGoPrev) ? "opacity-30 cursor-not-allowed" : "opacity-100",
+              ].join(" ")}
+            >
+              <ChevronLeft className="text-cyan-200" />
+            </button>
 
-      {/* RIGHT ARROW */}
-      <button
-        onClick={goNext}
-        disabled={currentZone === zones.length - 1}
-        className={`
-          fixed right-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full glass-panel
-          transition-all duration-300
-          ${
-            currentZone === zones.length - 1
-              ? "opacity-20 cursor-not-allowed"
-              : "hover:bg-primary/20 hover:neon-glow"
-          }
-        `}
-      >
-        <ChevronRight className="w-6 h-6 text-primary" />
-      </button>
-
-      {/* BOTTOM DOTS */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4">
-        {zones.map((z) => (
-          <button
-            key={z.id}
-            onClick={() => onNavigate(z.id)}
-            className={`
-              w-3 h-3 rounded-full transition-all duration-300
-              ${
-                currentZone === z.id
-                  ? "bg-primary shadow-[0_0_12px_var(--primary)] scale-125"
-                  : "bg-muted hover:bg-primary/50"
-              }
-            `}
-          />
-        ))}
+            <button
+              type="button"
+              onClick={goNext}
+              disabled={disabled || !canGoNext}
+              className={[
+                "pointer-events-auto inline-flex h-14 w-14 items-center justify-center rounded-2xl",
+                "border border-cyan-400/20 bg-black/35 backdrop-blur-xl",
+                "shadow-[0_0_22px_rgba(34,211,238,0.12)] transition",
+                "hover:bg-black/45",
+                (disabled || !canGoNext) ? "opacity-30 cursor-not-allowed" : "opacity-100",
+              ].join(" ")}
+            >
+              <ChevronRight className="text-cyan-200" />
+            </button>
+          </div>
+        </div>
       </div>
     </>
   );

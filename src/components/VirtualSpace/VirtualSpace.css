@@ -87,14 +87,13 @@
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(
-    0deg,
-    transparent,
-    transparent 2px,
-    hsl(var(--primary) / 0.03) 2px,
-    hsl(var(--primary) / 0.03) 4px
-  );
+  background: repeating-linear-gradient(0deg,
+      transparent,
+      transparent 2px,
+      hsl(var(--primary) / 0.03) 2px,
+      hsl(var(--primary) / 0.03) 4px);
 }
+
 /* ===========================================================
    GLASS PANELS / NEON EFFECTS
    =========================================================== */
@@ -179,8 +178,13 @@
 }
 
 @keyframes typewriter {
-  from { width: 0; }
-  to { width: 100%; }
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
 }
 
 /* ===========================================================
@@ -188,18 +192,24 @@
    =========================================================== */
 
 @keyframes float {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(-20px) rotate(4deg);
   }
 }
 
 @keyframes float-delayed {
-  0%, 100% {
+
+  0%,
+  100% {
     transform: translateY(0px) rotate(0deg);
   }
+
   50% {
     transform: translateY(20px) rotate(-4deg);
   }
@@ -209,19 +219,34 @@
   0% {
     box-shadow: 0 0 6px hsl(var(--primary) / 0.5);
   }
+
   100% {
     box-shadow: 0 0 18px hsl(var(--primary) / 0.8);
   }
 }
 
 @keyframes fade-in {
-  0% { opacity: 0; transform: translateY(12px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes scale-in {
-  0% { opacity: 0; transform: scale(0.92); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .virtualspace-scope .animate-scale-in {
@@ -238,8 +263,13 @@
 }
 
 @keyframes pulse {
-  from { opacity: 0.4; }
-  to { opacity: 1; }
+  from {
+    opacity: 0.4;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
 /* Float utility */
@@ -250,6 +280,7 @@
 .virtualspace-scope .animate-float-delayed {
   animation: float-delayed 6s ease-in-out infinite;
 }
+
 /* ===========================================================
    WELCOME HALL — ZONE 1
    (Effets d’entrée, titres, lignes décoratives, prompt)
@@ -281,12 +312,10 @@
 .virtualspace-scope .welcome-line {
   width: 80px;
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    hsl(var(--primary)),
-    transparent
-  );
+  background: linear-gradient(90deg,
+      transparent,
+      hsl(var(--primary)),
+      transparent);
 }
 
 .virtualspace-scope .welcome-diamond {
@@ -383,10 +412,12 @@
   background-color: hsl(var(--primary));
   animation: bounce 0.9s infinite;
 }
+
 .virtualspace-scope .welcome-status-dots .dot:nth-child(2) {
   background-color: hsl(var(--secondary));
   animation: bounce 0.9s infinite 0.2s;
 }
+
 .virtualspace-scope .welcome-status-dots .dot:nth-child(3) {
   background-color: hsl(var(--neon-pink));
   animation: bounce 0.9s infinite 0.4s;
@@ -394,8 +425,17 @@
 
 /* Bounce animation for dots */
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); opacity: 0.7; }
-  50% { transform: translateY(-7px); opacity: 1; }
+
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translateY(-7px);
+    opacity: 1;
+  }
 }
 
 /* Floating decorative outlines */
@@ -420,7 +460,9 @@
   bottom: -50px;
   right: -60px;
   transform: rotate(45deg);
-}/* ===========================================================
+}
+
+/* ===========================================================
    INTERACTIVE GALLERY — REWORK (MATCH CONSOLE STYLE)
    =========================================================== */
 
@@ -562,11 +604,9 @@
 .virtualspace-scope .modal-title {
   font-size: 2rem;
   font-weight: 700;
-  background-image: linear-gradient(
-    135deg,
-    hsl(var(--primary)),
-    hsl(var(--secondary))
-  );
+  background-image: linear-gradient(135deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary)));
   -webkit-background-clip: text;
   color: transparent;
   margin-bottom: 1rem;
@@ -594,6 +634,7 @@
   border-radius: 50%;
   animation: pulse 1s infinite alternate;
 }
+
 /* ===========================================================
    CONTROL CONSOLE — ZONE 3
    =========================================================== */
@@ -626,11 +667,9 @@
 .virtualspace-scope .console-title {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   font-weight: 700;
-  background-image: linear-gradient(
-    135deg,
-    hsl(var(--primary)),
-    hsl(var(--secondary))
-  );
+  background-image: linear-gradient(135deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary)));
   -webkit-background-clip: text;
   color: transparent;
   margin-bottom: 0.5rem;
@@ -725,11 +764,9 @@
 
 .virtualspace-scope .power-bar-fill {
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    hsl(var(--primary)),
-    hsl(var(--secondary))
-  );
+  background: linear-gradient(90deg,
+      hsl(var(--primary)),
+      hsl(var(--secondary)));
   transition: width 0.4s ease;
 }
 
@@ -984,7 +1021,7 @@
    GALLERY CARDS
 --------------------------------*/
 .virtualspace-scope .gallery-card {
-  background: rgba(255,255,255,0.03);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid hsl(var(--border));
   border-radius: 1rem;
   padding: 2rem;
@@ -1012,8 +1049,15 @@
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.9); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* ------------------------------
@@ -1037,6 +1081,7 @@
   font-size: 1.2rem;
   margin-top: 1rem;
 }
+
 /* ------------------------------ */
 /* GLOBAL VIRTUAL SPACE EFFECTS   */
 /* ------------------------------ */
@@ -1068,11 +1113,9 @@
 
 /* Gradient glow around sections */
 .bg-gradient-zone {
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 200, 255, 0.18),
-    rgba(0, 0, 0, 0)
-  );
+  background: radial-gradient(circle at center,
+      rgba(0, 200, 255, 0.18),
+      rgba(0, 0, 0, 0));
 }
 
 /* Title animation */
@@ -1105,9 +1148,20 @@
 }
 
 @keyframes pulseGlow {
-  0% { opacity: 0.3; transform: scale(0.9); }
-  50% { opacity: 0.9; transform: scale(1); }
-  100% { opacity: 0.3; transform: scale(0.9); }
+  0% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
+
+  50% {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.3;
+    transform: scale(0.9);
+  }
 }
 
 /* Slow float */
@@ -1116,9 +1170,17 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0) rotate(0); }
-  50% { transform: translateY(-18px) rotate(4deg); }
-  100% { transform: translateY(0) rotate(0); }
+  0% {
+    transform: translateY(0) rotate(0);
+  }
+
+  50% {
+    transform: translateY(-18px) rotate(4deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0);
+  }
 }
 
 .animate-float-delayed {
@@ -1136,9 +1198,10 @@
 .section-divider {
   width: 70px;
   height: 3px;
-  background: linear-gradient(90deg, transparent, rgb(0,200,255), transparent);
+  background: linear-gradient(90deg, transparent, rgb(0, 200, 255), transparent);
   margin: 14px auto;
 }
+
 /* ============================
    GLOBAL ZONE WRAPPER
 ============================ */
@@ -1233,9 +1296,17 @@
 }
 
 @keyframes scaleIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
+
 /* ============================
    WELCOME HALL PANEL
 ============================ */
@@ -1275,15 +1346,23 @@
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
+
 /* ============================
    TOP NAVBAR (better styling)
 ============================ */
 .navbar {
   background: rgba(10, 14, 25, 0.65);
-  border-bottom: 1px solid rgba(0,255,255,0.08);
+  border-bottom: 1px solid rgba(0, 255, 255, 0.08);
   backdrop-filter: blur(14px);
   padding: 0.8rem 2rem;
 }
@@ -1297,12 +1376,104 @@
 }
 
 .nav-btn.active {
-  background: rgba(0,255,255,0.12);
-  box-shadow: 0 0 10px rgba(0,255,255,0.2);
+  background: rgba(0, 255, 255, 0.12);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.2);
   color: #7ce7ff;
 }
 
 .nav-btn:hover:not(.active) {
-  background: rgba(255,255,255,0.05);
+  background: rgba(255, 255, 255, 0.05);
   color: #e3ecff;
+}
+
+/* ===============================
+   RESPONSIVE FIX – MOBILE
+   =============================== */
+
+@media (max-width: 1024px) {
+  .virtualspace-scope {
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .virtualspace-scope>div[style] {
+    height: auto !important;
+    overflow-y: auto;
+  }
+
+  .zone-section {
+    min-height: 100vh;
+    padding: 80px 16px 120px;
+    box-sizing: border-box;
+  }
+
+  .virtualspace-scope .scrollbar-hide {
+    scroll-snap-type: none !important;
+  }
+}
+
+/* ===============================
+   RESPONSIVE BEHAVIOR
+=============================== */
+
+/* Desktop: horizontal carousel */
+@media (min-width: 1024px) {
+  .virtualspace-container {
+    height: 100vh;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+  }
+
+  .zone-section {
+    scroll-snap-align: start;
+  }
+}
+
+/* Mobile: vertical scroll */
+@media (max-width: 1023px) {
+  .virtualspace-container {
+    flex-direction: column;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: none;
+  }
+
+  .zone-section {
+    min-height: auto;
+    height: auto;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+}
+
+/* Navigation arrows should always stay behind modals */
+.virtualspace-arrow,
+.zone-arrow,
+.carousel-arrow {
+  z-index: 10;
+}
+
+/* Any modal / popup should be above everything */
+.virtualspace-modal,
+.glass-modal,
+.zone-modal,
+.popup,
+.modal {
+  position: relative;
+  z-index: 100;
+}
+
+/* When any popup/modal is visible, disable navigation arrows */
+.virtualspace-scope:has(.popup),
+.virtualspace-scope:has(.modal),
+.virtualspace-scope:has(.glass-panel.open),
+.virtualspace-scope:has(.zone-modal) {
+
+  .zone-arrow,
+  .carousel-arrow,
+  .virtualspace-arrow {
+    opacity: 0;
+    pointer-events: none;
+  }
 }
